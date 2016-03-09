@@ -19,6 +19,8 @@
 		847F58AD1C8A0B7D00585902 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58AC1C8A0B7D00585902 /* JSON.swift */; };
 		847F58AF1C8A0B9900585902 /* CuriosityRoverDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58AE1C8A0B9900585902 /* CuriosityRoverDataService.swift */; };
 		84E580F31C909B970067C624 /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84E580F21C909B970067C624 /* apikey.txt */; };
+		84E580FE1C90D3660067C624 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E580FD1C90D3660067C624 /* PhotoViewController.swift */; };
+		84E581001C90D3780067C624 /* PhotoInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E580FF1C90D3780067C624 /* PhotoInfoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		84E580F21C909B970067C624 /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
 		84E580F81C90A61A0067C624 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		84E580F91C90A61A0067C624 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
+		84E580FD1C90D3660067C624 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		84E580FF1C90D3780067C624 /* PhotoInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 				847F58AC1C8A0B7D00585902 /* JSON.swift */,
 				847F58AA1C8A03BC00585902 /* NSDate+UTC.swift */,
 				847F58961C89F93000585902 /* SecondViewController.swift */,
+				84E580FD1C90D3660067C624 /* PhotoViewController.swift */,
+				84E580FF1C90D3780067C624 /* PhotoInfoController.swift */,
 			);
 			path = CuriosityRover;
 			sourceTree = "<group>";
@@ -174,6 +180,8 @@
 				847F58A91C89FEA700585902 /* Dictionary+JSONValues.swift in Sources */,
 				847F58971C89F93000585902 /* SecondViewController.swift in Sources */,
 				847F58931C89F93000585902 /* AppDelegate.swift in Sources */,
+				84E580FE1C90D3660067C624 /* PhotoViewController.swift in Sources */,
+				84E581001C90D3780067C624 /* PhotoInfoController.swift in Sources */,
 				847F58951C89F93000585902 /* FirstViewController.swift in Sources */,
 				847F58AF1C8A0B9900585902 /* CuriosityRoverDataService.swift in Sources */,
 				847F58AB1C8A03BC00585902 /* NSDate+UTC.swift in Sources */,
