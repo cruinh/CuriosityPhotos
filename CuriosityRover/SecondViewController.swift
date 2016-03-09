@@ -12,6 +12,7 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
 {
     @IBOutlet weak var spinner : UIActivityIndicatorView!
     @IBOutlet weak var collectionView : UICollectionView!
+    var refreshControl : UIRefreshControl?
     
     var parsedServiceData : CuriosityRoverData?
 
@@ -21,6 +22,23 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
      
         spinner.startAnimating()
         
+        refresh()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl!.tintColor = self.spinner.color
+        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl!.addTarget(self, action: Selector("refresh"), forControlEvents: UIControlEvents.ValueChanged)
+        collectionView!.addSubview(refreshControl!)
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    func refresh()
+    {
         var page = NSUserDefaults.standardUserDefaults().integerForKey("CURIOSITY_PAGE")
         if page < 1 { page = 1 }
         
@@ -44,6 +62,7 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
                     self!.collectionView.reloadData()
                     print("[--STOPPING SPINNER--]...")
                     self!.spinner.stopAnimating()
+                    self!.refreshControl?.endRefreshing()
                 })
             }
         }
@@ -51,7 +70,6 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         {
             print("[--ERROR--]: Could not find request parameters in NSUserDefaults")
         }
-        
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
@@ -89,6 +107,11 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         {
             destinationViewController.photoInfo = senderCell.photoInfo
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    {
+        return .LightContent;
     }
 }
 

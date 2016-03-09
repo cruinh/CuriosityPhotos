@@ -19,53 +19,82 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIZ-vu-bUI">
-                                <rect key="frame" x="20" y="55" width="41" height="21"/>
+                                <rect key="frame" x="20" y="57" width="41" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1iv-Hx-rGR">
-                                <rect key="frame" x="72" y="50" width="508" height="30"/>
+                                <rect key="frame" x="72" y="50" width="508" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIw-JP-fvw">
-                                <rect key="frame" x="20" y="88" width="44" height="21"/>
+                                <rect key="frame" x="20" y="92" width="44" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hks-fq-8jy">
-                                <rect key="frame" x="72" y="83" width="508" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hks-fq-8jy">
+                                <rect key="frame" x="72" y="87" width="508" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="zHR-lb-XaV"/>
+                                </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5Y-fx-hfo">
-                                <rect key="frame" x="72" y="50" width="508" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5Y-fx-hfo">
+                                <rect key="frame" x="72" y="50" width="508" height="34"/>
+                                <connections>
+                                    <action selector="didTapDate:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Cxt-dm-adR"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYz-9E-RWB">
-                                <rect key="frame" x="72" y="83" width="508" height="30"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQZ-DU-kvV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <connections>
+                                    <action selector="didTapDismissPickerButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="5eQ-Kr-MpQ"/>
+                                </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="OCZ-i8-ZIb">
+                                <rect key="frame" x="0.0" y="335" width="600" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <date key="date" timeIntervalSinceReferenceDate="479245440.99860299">
+                                    <!--2016-03-09 19:44:00 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="OCZ-i8-ZIb" secondAttribute="bottom" id="03t-ep-bs8"/>
+                            <constraint firstItem="1iv-Hx-rGR" firstAttribute="top" secondItem="P5Y-fx-hfo" secondAttribute="top" id="5s9-jI-TBh"/>
+                            <constraint firstItem="iQZ-DU-kvV" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="6m4-II-9g8"/>
                             <constraint firstItem="Hks-fq-8jy" firstAttribute="leading" secondItem="TIw-JP-fvw" secondAttribute="trailing" constant="8" id="Fwz-ak-k4l"/>
                             <constraint firstItem="Hks-fq-8jy" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="LwN-aM-ft6"/>
+                            <constraint firstItem="iQZ-DU-kvV" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" id="Rdo-et-rpQ"/>
                             <constraint firstItem="Hks-fq-8jy" firstAttribute="width" secondItem="1iv-Hx-rGR" secondAttribute="width" id="SDz-5S-z4M"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="iQZ-DU-kvV" secondAttribute="bottom" id="XLx-gV-Qv1"/>
                             <constraint firstItem="yIZ-vu-bUI" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Z0S-iP-XHL"/>
                             <constraint firstItem="1iv-Hx-rGR" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" constant="50" id="bLB-N3-Z6q"/>
                             <constraint firstItem="1iv-Hx-rGR" firstAttribute="centerY" secondItem="yIZ-vu-bUI" secondAttribute="centerY" id="bUR-ZK-41Y"/>
+                            <constraint firstAttribute="trailing" secondItem="OCZ-i8-ZIb" secondAttribute="trailing" id="bZr-Tl-EgP"/>
+                            <constraint firstItem="OCZ-i8-ZIb" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="cGk-B2-uKY"/>
+                            <constraint firstItem="1iv-Hx-rGR" firstAttribute="leading" secondItem="P5Y-fx-hfo" secondAttribute="leading" id="dYP-2K-N0z"/>
                             <constraint firstItem="Hks-fq-8jy" firstAttribute="top" secondItem="1iv-Hx-rGR" secondAttribute="bottom" constant="3" id="fiG-0W-EFD"/>
+                            <constraint firstItem="1iv-Hx-rGR" firstAttribute="trailing" secondItem="P5Y-fx-hfo" secondAttribute="trailing" id="ggR-Lj-wfl"/>
                             <constraint firstItem="Hks-fq-8jy" firstAttribute="centerY" secondItem="TIw-JP-fvw" secondAttribute="centerY" id="hex-5H-KXp"/>
                             <constraint firstItem="TIw-JP-fvw" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="iCT-lX-ebv"/>
+                            <constraint firstItem="1iv-Hx-rGR" firstAttribute="bottom" secondItem="P5Y-fx-hfo" secondAttribute="bottom" id="mrn-cd-rUe"/>
                             <constraint firstItem="1iv-Hx-rGR" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="pBL-zp-AC3"/>
+                            <constraint firstAttribute="trailing" secondItem="iQZ-DU-kvV" secondAttribute="trailing" id="wx3-HQ-3ft"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Options" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="dateButton" destination="P5Y-fx-hfo" id="rLq-tj-TKI"/>
+                        <outlet property="datePicker" destination="OCZ-i8-ZIb" id="HIo-HV-lnK"/>
+                        <outlet property="datePickerBottomConstraint" destination="03t-ep-bs8" id="Rge-dl-yqn"/>
                         <outlet property="dateTextField" destination="1iv-Hx-rGR" id="7Wc-pD-vta"/>
-                        <outlet property="pageButton" destination="iYz-9E-RWB" id="HuU-u4-yvc"/>
+                        <outlet property="dismissPickerButton" destination="iQZ-DU-kvV" id="mDN-P1-g09"/>
                         <outlet property="pageTextField" destination="Hks-fq-8jy" id="4bF-0d-kq7"/>
                     </connections>
                 </viewController>
@@ -86,7 +115,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D5V-u4-3Cg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nv3-fz-iLN">
                                     <size key="itemSize" width="228" height="228"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -106,6 +135,7 @@
                                                 </imageView>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1TL-Cq-QAk">
                                                     <rect key="frame" x="96" y="95" width="37" height="37"/>
+                                                    <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -135,9 +165,9 @@
                                 <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="D5V-u4-3Cg" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="Cv8-Wf-Iao"/>
+                            <constraint firstItem="D5V-u4-3Cg" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="20" id="Cv8-Wf-Iao"/>
                             <constraint firstItem="aqj-L6-T2V" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="F5e-K6-Yxk"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="D5V-u4-3Cg" secondAttribute="bottom" id="MPW-Cv-Ckz"/>
                             <constraint firstAttribute="trailing" secondItem="D5V-u4-3Cg" secondAttribute="trailing" id="ZEC-Vz-BAg"/>
