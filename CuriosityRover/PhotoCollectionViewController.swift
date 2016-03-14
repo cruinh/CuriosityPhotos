@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  PhotoCollectionViewController.swift
 //  CuriosityRover
 //
 //  Created by Matt Hayes on 3/4/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
+class PhotoCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
 {
     @IBOutlet weak var spinner : UIActivityIndicatorView!
     @IBOutlet weak var collectionView : UICollectionView!
@@ -47,11 +47,11 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
             
             CuriosityRoverDataService().getData(date, page: page) { [weak self] (JSON, error) -> Void in
                 
-                guard error == nil else { print ("SecondViewController.viewDidLoad: \(error)") ; return }
+                guard error == nil else { print ("OptionsViewController.viewDidLoad: \(error)") ; return }
                 guard self != nil
                     else
                 {
-                    print("SecondViewController.viewDidLoad : self was nil on return") ; return
+                    print("OptionsViewController.viewDidLoad : self was nil on return") ; return
                 }
                 
                 print("[--PARSING JSON--]...")

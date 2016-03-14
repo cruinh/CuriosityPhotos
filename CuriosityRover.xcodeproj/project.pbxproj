@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		847F58931C89F93000585902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58921C89F93000585902 /* AppDelegate.swift */; };
-		847F58951C89F93000585902 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58941C89F93000585902 /* FirstViewController.swift */; };
-		847F58971C89F93000585902 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58961C89F93000585902 /* SecondViewController.swift */; };
+		847F58951C89F93000585902 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58941C89F93000585902 /* OptionsViewController.swift */; };
+		847F58971C89F93000585902 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58961C89F93000585902 /* PhotoCollectionViewController.swift */; };
 		847F589A1C89F93000585902 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F58981C89F93000585902 /* Main.storyboard */; };
 		847F589C1C89F93000585902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847F589B1C89F93000585902 /* Assets.xcassets */; };
 		847F589F1C89F93000585902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F589D1C89F93000585902 /* LaunchScreen.storyboard */; };
@@ -28,8 +28,8 @@
 /* Begin PBXFileReference section */
 		847F588F1C89F93000585902 /* CuriosityRover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CuriosityRover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F58921C89F93000585902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		847F58941C89F93000585902 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		847F58961C89F93000585902 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		847F58941C89F93000585902 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		847F58961C89F93000585902 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		847F58991C89F93000585902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		847F589B1C89F93000585902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847F589E1C89F93000585902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,10 +86,10 @@
 				847F58AE1C8A0B9900585902 /* CuriosityRoverDataService.swift */,
 				84E580F21C909B970067C624 /* apikey.txt */,
 				847F58A81C89FEA700585902 /* Dictionary+JSONValues.swift */,
-				847F58941C89F93000585902 /* FirstViewController.swift */,
+				847F58941C89F93000585902 /* OptionsViewController.swift */,
 				847F58AC1C8A0B7D00585902 /* JSON.swift */,
 				847F58AA1C8A03BC00585902 /* NSDate+UTC.swift */,
-				847F58961C89F93000585902 /* SecondViewController.swift */,
+				847F58961C89F93000585902 /* PhotoCollectionViewController.swift */,
 				84E580FD1C90D3660067C624 /* PhotoViewController.swift */,
 				84E580FF1C90D3780067C624 /* PhotoInfoController.swift */,
 			);
@@ -185,11 +185,11 @@
 				847F58A71C89FA1B00585902 /* CuriosityPhotoCell.swift in Sources */,
 				847F58AD1C8A0B7D00585902 /* JSON.swift in Sources */,
 				847F58A91C89FEA700585902 /* Dictionary+JSONValues.swift in Sources */,
-				847F58971C89F93000585902 /* SecondViewController.swift in Sources */,
+				847F58971C89F93000585902 /* PhotoCollectionViewController.swift in Sources */,
 				847F58931C89F93000585902 /* AppDelegate.swift in Sources */,
 				84E580FE1C90D3660067C624 /* PhotoViewController.swift in Sources */,
 				84E581001C90D3780067C624 /* PhotoInfoController.swift in Sources */,
-				847F58951C89F93000585902 /* FirstViewController.swift in Sources */,
+				847F58951C89F93000585902 /* OptionsViewController.swift in Sources */,
 				847F58AF1C8A0B9900585902 /* CuriosityRoverDataService.swift in Sources */,
 				AA6DFB821C9701DD0097CB1A /* README.md in Sources */,
 				847F58AB1C8A03BC00585902 /* NSDate+UTC.swift in Sources */,

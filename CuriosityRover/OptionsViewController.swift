@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  OptionsViewController.swift
 //  CuriosityRover
 //
 //  Created by Matt Hayes on 3/4/16.
@@ -25,7 +25,7 @@ func yesterDay() -> NSDate
     return yesterDayDate
 }
 
-class FirstViewController: UIViewController, UITextFieldDelegate
+class OptionsViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var dateTextField: UITextField!
