@@ -139,8 +139,8 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         var landing_date: NSDate?
         var max_sol: Int64?
         var max_date: NSDate?
-        var total_photos: Int64?
-        var cameras = [CameraInfo]()
+        var total_photos: Int64
+        var cameras = [CameraSummaryInfo]()
         
         init?(JSON: [String:AnyObject]?)
         {
