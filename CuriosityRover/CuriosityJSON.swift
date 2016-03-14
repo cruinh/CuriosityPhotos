@@ -8,53 +8,6 @@
 
 import Foundation
 
-internal extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject
-{
-    func jsonValue<T: DataProtocol>(key: String) -> T?
-    {
-        if let jsonValue = self[key as! Key] as? [String:AnyObject]
-        {
-            return T(JSON: jsonValue)
-        }
-        else
-        {
-            return nil
-        }
-    }
-    
-    func jsonValue<T: DataProtocol>(key: String) -> [T]
-    {
-        var finalArray = [T]()
-        if let jsonArray = self[key as! Key] as? [[String:AnyObject]]
-        {
-            for jsonArrayItem in jsonArray
-            {
-                if let item = T(JSON: jsonArrayItem)
-                {
-                    finalArray.append(item)
-                }
-            }
-        }
-        return finalArray
-    }
-    
-    func jsonValue<T: DataProtocol>(key: String) -> [String:T]
-    {
-        var finalDictionary = [String:T]()
-        if let jsonDictionary = self[key as! Key] as? [String:[String:AnyObject]]
-        {
-            for (key, jsonDictionaryItem) in jsonDictionary
-            {
-                if let item = T(JSON: jsonDictionaryItem)
-                {
-                    finalDictionary[key] = item
-                }
-            }
-        }
-        return finalDictionary
-    }
-}
-
 protocol DataProtocol
 {
     init?(JSON: [String:AnyObject]?)
@@ -139,19 +92,19 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         var landing_date: NSDate?
         var max_sol: Int64?
         var max_date: NSDate?
-        var total_photos: Int64
+        var total_photos: Int64?
         var cameras = [CameraSummaryInfo]()
         
         init?(JSON: [String:AnyObject]?)
         {
             guard let JSON = JSON else { return nil }
             
-            id = JSON.jsonValue("id")
+            self.id = JSON.jsonValue("id")
             name = JSON.jsonValue("name")
             landing_date = JSON.jsonValue("landing_date")
             max_sol = JSON.jsonValue("max_sol")
             max_date = JSON.jsonValue("max_date")
-            total_photos = JSON.jsonValue("total_photos")
+            total_photos = JSON.jsonValue("total_photos", defaultValue: 1)
             cameras = JSON.jsonValue("cameras")
         }
         
