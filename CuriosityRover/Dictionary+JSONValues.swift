@@ -42,7 +42,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      */
     public func jsonValue(key: String) -> Float?
     {
-        return (self[key as! Key] as? NSNumber)?.floatValue
+        return self[key as! Key] as? Float
     }
     
     /**
@@ -52,7 +52,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      */
     public func jsonValue(key: String) -> Double?
     {
-        return (self[key as! Key] as? NSNumber)?.doubleValue
+        return self[key as! Key] as? Double
     }
     
     /**
@@ -62,7 +62,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      */
     public func jsonValue(key: String) -> UInt32?
     {
-        return (self[key as! Key] as? NSNumber)?.unsignedIntValue
+        return self[key as! Key] as? UInt32
     }
     
     /**
@@ -72,7 +72,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      */
     public func jsonValue(key: String) -> UInt?
     {
-        return (self[key as! Key] as? NSNumber)?.unsignedIntegerValue
+        return self[key as! Key] as? UInt
     }
     
     /**
@@ -82,7 +82,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      */
     public func jsonValue(key: String) -> Int64?
     {
-        return (self[key as! Key] as? NSNumber)?.longLongValue
+        return self[key as! Key] as? Int64
     }
     
     /**
@@ -92,7 +92,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      */
     public func jsonValue(key: String) -> Int32?
     {
-        return (self[key as! Key] as? NSNumber)?.intValue
+        return self[key as! Key] as? Int32
     }
     
     /**
@@ -102,7 +102,7 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      */
     public func jsonValue(key: String) -> Int?
     {
-        return (self[key as! Key] as? NSNumber)?.integerValue
+        return self[key as! Key] as? Int
     }
     
     /**
@@ -110,9 +110,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as an NSNumber, returns the value as a Float
      returns 0 otherwise
      */
-    public func jsonValue(key: String) -> Float
+    public func jsonValue(key: String, defaultValue : Float = 0.0) -> Float
     {
-        return (self[key as! Key] as? NSNumber)?.floatValue ?? 0
+        return self[key as! Key] as? Float ?? defaultValue
     }
     
     /**
@@ -120,9 +120,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as an NSNumber, returns the value as a Double
      returns 0 otherwise
      */
-    public func jsonValue(key: String) -> Double
+    public func jsonValue(key: String, defaultValue : Double = 0.0) -> Double
     {
-        return (self[key as! Key] as? NSNumber)?.doubleValue ?? 0
+        return self[key as! Key] as? Double ?? defaultValue
     }
     
     /**
@@ -130,9 +130,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as an NSNumber, returns the value as a UInt32
      returns 0 otherwise
      */
-    public func jsonValue(key: String) -> UInt32
+    public func jsonValue(key: String, defaultValue : UInt32 = 0) -> UInt32
     {
-        return (self[key as! Key] as? NSNumber)?.unsignedIntValue ?? 0
+        return self[key as! Key] as? UInt32 ?? defaultValue
     }
     
     /**
@@ -140,9 +140,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as an NSNumber, returns the value as a UInt
      returns 0 otherwise
      */
-    public func jsonValue(key: String) -> UInt
+    public func jsonValue(key: String, defaultValue : UInt = 0) -> UInt
     {
-        return (self[key as! Key] as? NSNumber)?.unsignedIntegerValue ?? 0
+        return self[key as! Key] as? UInt ?? defaultValue
     }
     
     /**
@@ -150,9 +150,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as an NSNumber, returns the value as a Int32
      returns 0 otherwise
      */
-    public func jsonValue(key: String) -> Int64
+    public func jsonValue(key: String, defaultValue : Int64 = 0) -> Int64
     {
-        return (self[key as! Key] as? NSNumber)?.longLongValue ?? 0
+        return self[key as! Key] as? Int64 ?? defaultValue
     }
     
     /**
@@ -160,9 +160,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as an NSNumber, returns the value as a Int32
      returns 0 otherwise
      */
-    public func jsonValue(key: String) -> Int32
+    public func jsonValue(key: String, defaultValue : Int32 = 0) -> Int32
     {
-        return (self[key as! Key] as? NSNumber)?.intValue ?? 0
+        return self[key as! Key] as? Int32 ?? defaultValue
     }
     
     /**
@@ -170,9 +170,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as an NSNumber, returns the value as a Int
      returns 0 otherwise
      */
-    public func jsonValue(key: String) -> Int
+    public func jsonValue(key: String, defaultValue : Int = 0) -> Int
     {
-        return (self[key as! Key] as? NSNumber)?.integerValue ?? 0
+        return self[key as! Key] as? Int ?? defaultValue
     }
     
     /**
@@ -180,9 +180,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      if the value exists as a String, returns the value
      returns an empty string otherwise
      */
-    public func jsonValue(key: String) -> String
+    public func jsonValue(key: String, defaultValue: String = "") -> String
     {
-        return (self[key as! Key] as? String) ?? ""
+        return self[key as! Key] as? String ?? defaultValue
     }
     
     /**
@@ -190,9 +190,9 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
      returns true if the value is an NSNumber that evaluates to true
      returns false if the value does not exist, is the wrong type, or evaluates false
     */
-    public func jsonValue(key: String) -> Bool
+    public func jsonValue(key: String, defaultValue: Bool = false) -> Bool
     {
-        return (self[key as! Key] as? NSNumber)?.boolValue ?? false
+        return self[key as! Key] as? Bool ?? defaultValue
     }
     
 }
