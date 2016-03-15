@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 
-class PhotoViewController : UIViewController
+class PhotoViewController : UIViewController, UIScrollViewDelegate
 {
     weak var image : UIImage?
     @IBOutlet weak var imageView : UIImageView?
+    @IBOutlet weak var scrollView : UIScrollView?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     
     required init?(coder aDecoder: NSCoder)
     {
@@ -24,14 +26,37 @@ class PhotoViewController : UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        if let urlString = photoInfo?.img_src?.absoluteString
+        
+        self.scrollView?.minimumZoomScale = 1.0
+        self.scrollView?.maximumZoomScale = 6.0
+        
+        if let imageURL = photoInfo?.img_src
         {
-            imageView?.image = CuriosityPhotoCell.imageFromCache(urlString)
+            activityIndicator?.startAnimating()
+            CuriosityPhotoRepository.getImage(imageURL, completion: { [weak self](image, error) -> Void in
+                guard self != nil else { print("self was nil: \(__FILE__):\(__LINE__)"); return }
+                
+                if let image = image
+                {
+                    self!.imageView?.image = image
+                }
+                else
+                {
+                    print("error: photo url invalid: \(imageURL)")
+                }
+                
+                self!.activityIndicator?.stopAnimating()
+            })
         }
         else
         {
-            print("error: photo url invalid: \(photoInfo?.img_src)")
+            print("error: photo url was nil")
         }
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?
+    {
+        return self.imageView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -40,9 +65,10 @@ class PhotoViewController : UIViewController
             destinationViewController.photoInfo = self.photoInfo
         }
     }
-    
-    @IBAction func dismiss()
+
+    @IBAction func dismiss(sender: UIButton?)
     {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
+
 }

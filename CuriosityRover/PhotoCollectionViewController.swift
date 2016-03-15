@@ -90,10 +90,14 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let senderCell = sender as? CuriosityPhotoCell, destinationViewController = segue.destinationViewController as? PhotoViewController
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if let senderCell = sender as? CuriosityPhotoCell,
+            destinationController = segue.destinationViewController as? UINavigationController,
+            destinationPhotoController = destinationController.topViewController as? PhotoViewController
         {
-            destinationViewController.photoInfo = senderCell.photoInfo
+            destinationPhotoController.photoInfo = senderCell.photoInfo
         }
     }
     

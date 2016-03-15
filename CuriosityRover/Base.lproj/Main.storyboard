@@ -151,7 +151,7 @@
                                         <connections>
                                             <outlet property="imageView" destination="RfN-eL-UQe" id="FFG-AG-ZXa"/>
                                             <outlet property="spinner" destination="1TL-Cq-QAk" id="FG0-Ni-w4O"/>
-                                            <segue destination="UNr-D1-jP1" kind="presentation" id="VzW-gi-DWi"/>
+                                            <segue destination="bch-QS-Cla" kind="show" id="WLh-Hs-slA"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -197,44 +197,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ncW-eN-vin">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77X-ZL-Ewp">
-                                <rect key="frame" x="558" y="558" width="22" height="22"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpA-Dy-PKl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M0D-f2-fML">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="M0D-f2-fML" secondAttribute="trailing" id="EIZ-Kp-ogd"/>
+                                    <constraint firstItem="M0D-f2-fML" firstAttribute="centerY" secondItem="DpA-Dy-PKl" secondAttribute="centerY" id="Khg-x8-cm5"/>
+                                    <constraint firstItem="M0D-f2-fML" firstAttribute="centerX" secondItem="DpA-Dy-PKl" secondAttribute="centerX" id="aND-5R-NyF"/>
+                                    <constraint firstItem="M0D-f2-fML" firstAttribute="top" secondItem="DpA-Dy-PKl" secondAttribute="top" id="giH-Q2-Yf9"/>
+                                    <constraint firstAttribute="bottom" secondItem="M0D-f2-fML" secondAttribute="bottom" id="hn0-3O-4nk"/>
+                                    <constraint firstItem="M0D-f2-fML" firstAttribute="leading" secondItem="DpA-Dy-PKl" secondAttribute="leading" id="uEe-o7-KeO"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="UNr-D1-jP1" id="Xyw-de-PAC"/>
+                                </connections>
+                            </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Z13-Bd-0Uz">
+                                <rect key="frame" x="281.5" y="281.5" width="37" height="37"/>
+                                <color key="color" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DpA-Dy-PKl" firstAttribute="top" secondItem="BuH-uI-n1a" secondAttribute="bottom" id="7xw-ff-dS1"/>
+                            <constraint firstAttribute="trailing" secondItem="DpA-Dy-PKl" secondAttribute="trailing" id="Bwm-jz-BaB"/>
+                            <constraint firstItem="Z13-Bd-0Uz" firstAttribute="centerY" secondItem="525-pG-Fnk" secondAttribute="centerY" id="GRJ-gf-UJm"/>
+                            <constraint firstItem="DpA-Dy-PKl" firstAttribute="leading" secondItem="525-pG-Fnk" secondAttribute="leading" id="cT4-1z-pQ6"/>
+                            <constraint firstItem="Z13-Bd-0Uz" firstAttribute="centerX" secondItem="525-pG-Fnk" secondAttribute="centerX" id="tLI-K5-H0g"/>
+                            <constraint firstItem="DpA-Dy-PKl" firstAttribute="bottom" secondItem="X70-LL-5L6" secondAttribute="top" id="u1x-2J-eVX"/>
+                            <constraint firstItem="DpA-Dy-PKl" firstAttribute="top" secondItem="525-pG-Fnk" secondAttribute="topMargin" id="vLq-Bw-I1m"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7xw-ff-dS1"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="TfJ-as-zV4">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="f7j-n5-RCs">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Scc-JK-zt5">
+                                <rect key="frame" x="20" y="7" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="UNr-D1-jP1" eventType="touchUpInside" id="pXM-ef-y1p"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="tLc-Fn-O5e">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="77X-ZL-Ewp">
+                                <rect key="frame" x="558" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="Sbg-CC-kl9" kind="popoverPresentation" popoverAnchorView="77X-ZL-Ewp" id="mzo-DZ-rsC">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4f-yw-cka">
-                                <rect key="frame" x="20" y="550" width="30" height="30"/>
-                                <state key="normal" title="&lt;"/>
-                                <connections>
-                                    <action selector="dismiss" destination="UNr-D1-jP1" eventType="touchUpInside" id="4dK-P7-F2x"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="X70-LL-5L6" firstAttribute="top" secondItem="77X-ZL-Ewp" secondAttribute="bottom" constant="20" id="1Ft-vu-cnn"/>
-                            <constraint firstItem="b4f-yw-cka" firstAttribute="leading" secondItem="525-pG-Fnk" secondAttribute="leadingMargin" id="3TS-4k-sOa"/>
-                            <constraint firstAttribute="trailing" secondItem="ncW-eN-vin" secondAttribute="trailing" id="CRI-Sf-kd6"/>
-                            <constraint firstAttribute="trailing" secondItem="77X-ZL-Ewp" secondAttribute="trailing" constant="20" id="FZi-Yl-Ua2"/>
-                            <constraint firstItem="ncW-eN-vin" firstAttribute="leading" secondItem="525-pG-Fnk" secondAttribute="leading" id="H5E-Nh-cMe"/>
-                            <constraint firstItem="X70-LL-5L6" firstAttribute="top" secondItem="ncW-eN-vin" secondAttribute="bottom" id="KiD-ht-FYH"/>
-                            <constraint firstItem="ncW-eN-vin" firstAttribute="top" secondItem="525-pG-Fnk" secondAttribute="top" id="qSP-nD-R8N"/>
-                            <constraint firstItem="X70-LL-5L6" firstAttribute="top" secondItem="b4f-yw-cka" secondAttribute="bottom" constant="20" id="wPQ-KC-bxO"/>
-                        </constraints>
-                    </view>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="ncW-eN-vin" id="dCr-QP-o8s"/>
+                        <outlet property="activityIndicator" destination="Z13-Bd-0Uz" id="aXs-cc-mfG"/>
+                        <outlet property="imageView" destination="M0D-f2-fML" id="aTO-uV-T5Z"/>
+                        <outlet property="scrollView" destination="DpA-Dy-PKl" id="hfL-rt-GKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cfd-dw-QTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="360"/>
+            <point key="canvasLocation" x="2108" y="360"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fyd-FY-hgY">
+            <objects>
+                <navigationController id="bch-QS-Cla" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s7o-Rs-dWz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="UNr-D1-jP1" kind="relationship" relationship="rootViewController" id="RKi-Sc-qUZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5jo-X2-pFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1428" y="360"/>
         </scene>
         <!--Photo Info Controller-->
         <scene sceneID="cfz-ZC-Cfp">
@@ -280,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lKS-Tg-8Oe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2171" y="360"/>
+            <point key="canvasLocation" x="2799" y="360"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

@@ -9,55 +9,28 @@
 import Foundation
 import UIKit
 
-var imageCache = [String:UIImage]()
-
 class CuriosityPhotoCell : UICollectionViewCell
-{
-    class func imageFromCache(urlString : String) -> UIImage?
-    {
-        return imageCache[urlString]
-    }
-    
-    class func clearImageCache()
-    {
-        imageCache = [String:UIImage]()
-    }
-    
+{   
     var photoInfo : CuriosityRoverData.PhotoInfo?
     @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var spinner : UIActivityIndicatorView!
     
     func populateWithImage(imageURL: NSURL)
     {
+        spinner.startAnimating()
+        backgroundColor = UIColor.darkGrayColor()
         imageView.image = nil
         
-        if let image = imageCache[imageURL.absoluteString]
-        {
-            imageView.image = image
-        }
-        else
-        {
-            spinner.startAnimating()
+        CuriosityPhotoRepository.getImage(imageURL, completion: { [weak self] (image, error) -> Void in
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { [weak self]() -> Void in
-                
-                if let data = NSData(contentsOfURL: imageURL)
-                {
-                    imageCache[imageURL.absoluteString] = UIImage(data: data)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self?.imageView.image = UIImage(data: data)
-                        self!.spinner.stopAnimating()
-                    })
-                }
-                else
-                {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self?.imageView.image = nil
-                        self!.spinner.stopAnimating()
-                    })
-                }
-                
-            }
-        }
+            guard self != nil else { print("self was nil: \(__FILE__):\(__LINE__)"); return }
+            guard error == nil else { print("[--ERROR--]: \(__FILE__):\(__LINE__)\n\(error)"); return }
+            
+            self!.imageView.image = image
+            self!.spinner.stopAnimating()
+            
+            defer{ self?.spinner.stopAnimating() }
+            
+        })
     }
 }

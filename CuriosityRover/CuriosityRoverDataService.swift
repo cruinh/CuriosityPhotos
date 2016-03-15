@@ -13,7 +13,6 @@ class CuriosityRoverDataService
     func getData(completion: ((JSON: [String:AnyObject]?, error:Error?) -> Void))
     {
         let options = Options()
-        CuriosityPhotoCell.clearImageCache()
         
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: sessionConfig)
