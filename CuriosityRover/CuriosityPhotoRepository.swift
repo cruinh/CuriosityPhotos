@@ -11,16 +11,26 @@ import UIKit
 
 class CuriosityPhotoRepository
 {
-    static var imageCache = [String:UIImage]()
+    static var imageCache = NSCache()
     
     class func clearImageCache()
     {
-        imageCache = [String:UIImage]()
+        imageCache = NSCache()
+    }
+    
+    class func getCachedImage(imageURL: NSURL) -> UIImage?
+    {
+        return imageCache.objectForKey(imageURL.absoluteString) as? UIImage
+    }
+    
+    class func saveCachedImage(imageURL: NSURL, image: UIImage)
+    {
+        CuriosityPhotoRepository.imageCache.setObject(image, forKey: imageURL.absoluteString)
     }
     
     class func getImage(imageURL: NSURL, completion:((image: UIImage?, error: Error?)-> Void))
     {
-        if let image = CuriosityPhotoRepository.imageCache[imageURL.absoluteString]
+        if let image = CuriosityPhotoRepository.getCachedImage(imageURL)
         {
             completion(image: image, error: nil)
         }
@@ -40,7 +50,7 @@ class CuriosityPhotoRepository
                 if let image = UIImage(data: data)
                 {
                     maybeImage = image
-                    CuriosityPhotoRepository.imageCache[imageURL.absoluteString] = image
+                    CuriosityPhotoRepository.saveCachedImage(imageURL, image: image)
                 }
                 else
                 {
