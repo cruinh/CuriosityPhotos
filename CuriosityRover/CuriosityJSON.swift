@@ -23,7 +23,6 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         var img_src: NSURL?
         var earth_date: NSDate?
         var rover: RoverInfo?
-        var imageReady = false
         
         required init?(JSON: [String:AnyObject]?)
         {

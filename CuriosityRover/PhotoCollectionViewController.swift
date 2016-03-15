@@ -19,10 +19,6 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     override func viewDidLoad()
     {
         super.viewDidLoad()
-     
-        spinner.startAnimating()
-        
-        refresh()
         
         refreshControl = UIRefreshControl()
         refreshControl!.tintColor = self.spinner.color
@@ -35,40 +31,32 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     {
         super.viewDidAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
+        
+        spinner.startAnimating()
+        refresh()
     }
     
     func refresh()
     {
-        var page = NSUserDefaults.standardUserDefaults().integerForKey("CURIOSITY_PAGE")
-        if page < 1 { page = 1 }
-        
-        if let date = NSUserDefaults.standardUserDefaults().objectForKey("CURIOSITY_DATE") as? NSDate
-        {
+        CuriosityRoverDataService().getData() { [weak self] (JSON, error) -> Void in
             
-            CuriosityRoverDataService().getData(date, page: page) { [weak self] (JSON, error) -> Void in
-                
-                guard error == nil else { print ("OptionsViewController.viewDidLoad: \(error)") ; return }
-                guard self != nil
-                    else
-                {
-                    print("OptionsViewController.viewDidLoad : self was nil on return") ; return
-                }
-                
-                print("[--PARSING JSON--]...")
-                self!.parsedServiceData = CuriosityRoverData(JSON: JSON)
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    print("[--RELOADING COLLECTION VIEW--]...")
-                    self!.collectionView.reloadData()
-                    print("[--STOPPING SPINNER--]...")
-                    self!.spinner.stopAnimating()
-                    self!.refreshControl?.endRefreshing()
-                })
+            guard error == nil else { print ("OptionsViewController.viewDidLoad: \(error)") ; return }
+            guard self != nil
+                else
+            {
+                print("OptionsViewController.viewDidLoad : self was nil on return") ; return
             }
-        }
-        else
-        {
-            print("[--ERROR--]: Could not find request parameters in NSUserDefaults")
+            
+            print("[--PARSING JSON--]...")
+            self!.parsedServiceData = CuriosityRoverData(JSON: JSON)
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print("[--RELOADING COLLECTION VIEW--]...")
+                self!.collectionView.reloadData()
+                print("[--STOPPING SPINNER--]...")
+                self!.spinner.stopAnimating()
+                self!.refreshControl?.endRefreshing()
+            })
         }
     }
 

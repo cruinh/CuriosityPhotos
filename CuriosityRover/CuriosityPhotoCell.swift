@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 var imageCache = [String:UIImage]()
 
 class CuriosityPhotoCell : UICollectionViewCell
