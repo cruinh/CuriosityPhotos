@@ -31,13 +31,14 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     {
         super.viewDidAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
-        
-        spinner.startAnimating()
-        refresh()
     }
     
     func refresh()
     {
+        parsedServiceData = nil
+        collectionView.reloadData()
+        spinner.startAnimating()
+        
         CuriosityRoverDataService().getData() { [weak self] (JSON, error) -> Void in
             
             guard error == nil else { print ("OptionsViewController.viewDidLoad: \(error)") ; return }
@@ -67,11 +68,25 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return parsedServiceData?.photos.count ?? 0
+        guard let parsedServiceData = parsedServiceData else { return 0 }
+        
+        if parsedServiceData.photos.count > 0
+        {
+            return parsedServiceData.photos.count
+        }
+        else
+        {
+            return 1
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
+        guard parsedServiceData?.photos.count > 0 else
+        {
+            return collectionView.dequeueReusableCellWithReuseIdentifier("NoResultsCell", forIndexPath: indexPath)
+        }
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CuriosityPhotoCell", forIndexPath: indexPath) as! CuriosityPhotoCell
         
         if let photoInfo = parsedServiceData?.photos[indexPath.row], img_src = photoInfo.img_src

@@ -30,6 +30,12 @@ class PhotoViewController : UIViewController, UIScrollViewDelegate
         self.scrollView?.minimumZoomScale = 1.0
         self.scrollView?.maximumZoomScale = 6.0
         
+        populatePhoto()
+        refreshTitle()
+    }
+    
+    func populatePhoto()
+    {
         if let imageURL = photoInfo?.img_src
         {
             activityIndicator?.startAnimating()
@@ -46,12 +52,24 @@ class PhotoViewController : UIViewController, UIScrollViewDelegate
                 }
                 
                 self!.activityIndicator?.stopAnimating()
-            })
+                })
         }
         else
         {
             print("error: photo url was nil")
         }
+    }
+    
+    func refreshTitle()
+    {
+        var titleString = photoInfo?.camera?.name ?? ""
+        if let earthDate = photoInfo?.earth_date
+        {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = .ShortStyle
+            titleString = titleString + " " + dateFormatter.stringFromDate(earthDate)
+        }
+        title = titleString
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?

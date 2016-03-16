@@ -17,9 +17,11 @@ class PhotoInfoController : UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        title = "Photo JSON data"
         if let photoInfo = photoInfo
         {
             textView?.text = "\(photoInfo)"
+            textView?.contentOffset = CGPointZero
         }
         else
         {
