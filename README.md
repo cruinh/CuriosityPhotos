@@ -5,6 +5,8 @@ The project expects a file "apikey.txt", which will appear in red in the File Na
 
 <img src="https://raw.githubusercontent.com/cruinh/CuriosityPhotos/master/Screenshots/IMG_0522.png" alt="Curiosity photo #1" width="188" height="334">
 
+<img src="https://raw.githubusercontent.com/cruinh/CuriosityPhotos/master/Screenshots/IMG_0530.png" alt="Curiosity photo #1" width="188" height="334">
+
 <img src="https://raw.githubusercontent.com/cruinh/CuriosityPhotos/master/Screenshots/IMG_0531.png" alt="Curiosity photo #2" width="188" height="334">
 
 <img src="https://raw.githubusercontent.com/cruinh/CuriosityPhotos/master/Screenshots/IMG_0532.png" alt="Curiosity photo #2" width="188" height="334">
