@@ -41,11 +41,11 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
         
         CuriosityRoverDataService().getData() { [weak self] (JSON, error) -> Void in
             
-            guard error == nil else { print ("OptionsViewController.viewDidLoad: \(error)") ; return }
+            guard error == nil else { print ("PhotoCollectionViewController.viewDidLoad: \(error)") ; return }
             guard self != nil
                 else
             {
-                print("OptionsViewController.viewDidLoad : self was nil on return") ; return
+                print("PhotoCollectionViewController.viewDidLoad : self was nil on return") ; return
             }
             
             print("[--PARSING JSON--]...")
