@@ -3,7 +3,7 @@
 //  CuriosityRover
 //
 //  Created by Matthew Hayes on 3/14/16.
-//  Copyright © 2016 uShip. All rights reserved.
+//
 //
 
 import Foundation

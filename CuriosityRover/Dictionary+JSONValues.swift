@@ -202,8 +202,8 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
 {
     /**
      looks for a value with the given key
-     if the value exists as a String, it calls the extension method NSDate.dateFromUTCFormattedString and returns the result
-     returns nil otherwise
+     if the value exists as a String, uses NSDateFormatter and the format "yyyy-MM-dd" to create an NSDate.
+     returns nil if the format does not apply to the given string.
      */
     public func jsonValue(key: String) -> NSDate?
     {
@@ -251,12 +251,6 @@ public extension Dictionary where Key: StringLiteralConvertible, Value: AnyObjec
                 if let url = NSURL(string: urlString)
                 {
                     finalArray.append(url)
-                }
-                else
-                {
-//TODO: couldn't get this working.  Will come back to it if necessary, we're not actually using it yet
-//                    let warning : USDTOWarningSystem.Warning = .OneItemInACollectionOfElementsCouldNotBeParsed(sender: self, json: nil, key: key)
-//                    USDTOWarningSystem.sharedInstance.postWarning(warning)
                 }
             }
         }
