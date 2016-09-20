@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8410B36B1D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B3671D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift */; };
 		8410B36C1D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B3681D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift */; };
-		8410B36D1D91B3D7008DB229 /* JSONDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B3691D91B3D7008DB229 /* JSONDataProtocol.swift */; };
+		8410B36D1D91B3D7008DB229 /* JSONObjectConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B3691D91B3D7008DB229 /* JSONObjectConvertable.swift */; };
 		8410B36E1D91B3D7008DB229 /* JSONType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B36A1D91B3D7008DB229 /* JSONType.swift */; };
 		847F58931C89F93000585902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58921C89F93000585902 /* AppDelegate.swift */; };
 		847F58951C89F93000585902 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58941C89F93000585902 /* OptionsViewController.swift */; };
@@ -32,7 +32,7 @@
 /* Begin PBXFileReference section */
 		8410B3671D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+BasicJSONParsing.swift"; sourceTree = "<group>"; };
 		8410B3681D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSONTypeParsing.swift"; sourceTree = "<group>"; };
-		8410B3691D91B3D7008DB229 /* JSONDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataProtocol.swift; sourceTree = "<group>"; };
+		8410B3691D91B3D7008DB229 /* JSONObjectConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectConvertable.swift; sourceTree = "<group>"; };
 		8410B36A1D91B3D7008DB229 /* JSONType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONType.swift; sourceTree = "<group>"; };
 		847F588F1C89F93000585902 /* CuriosityRover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CuriosityRover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F58921C89F93000585902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 				847F58AE1C8A0B9900585902 /* CuriosityRoverDataService.swift */,
 				8410B3671D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift */,
 				8410B3681D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift */,
-				8410B3691D91B3D7008DB229 /* JSONDataProtocol.swift */,
+				8410B3691D91B3D7008DB229 /* JSONObjectConvertable.swift */,
 				8410B36A1D91B3D7008DB229 /* JSONType.swift */,
 				847F58941C89F93000585902 /* OptionsViewController.swift */,
 				847F58961C89F93000585902 /* PhotoCollectionViewController.swift */,
@@ -206,7 +206,7 @@
 				AA680D151C98CD8A00F3976E /* CuriosityPhotoCache.swift in Sources */,
 				AA6DFB881C987F740097CB1A /* CuriosityPhotoRepository.swift in Sources */,
 				847F58931C89F93000585902 /* AppDelegate.swift in Sources */,
-				8410B36D1D91B3D7008DB229 /* JSONDataProtocol.swift in Sources */,
+				8410B36D1D91B3D7008DB229 /* JSONObjectConvertable.swift in Sources */,
 				8410B36C1D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift in Sources */,
 				84E580FE1C90D3660067C624 /* PhotoViewController.swift in Sources */,
 				8410B36E1D91B3D7008DB229 /* JSONType.swift in Sources */,
