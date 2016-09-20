@@ -9,40 +9,33 @@
 import Foundation
 import UIKit
 
-class CuriosityPhotoCache
-{
+class CuriosityPhotoCache {
     static let defaultInstance = CuriosityPhotoCache()
-    
-    init()
-    {
+
+    init() {
         NotificationCenter.default.addObserver(self, selector: #selector(receivedMemoryWarning), name: NSNotification.Name.UIApplicationDidReceiveMemoryWarning, object: self)
     }
-    
-    deinit
-    {
+
+    deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    @objc func receivedMemoryWarning()
-    {
+
+    @objc func receivedMemoryWarning() {
         clearImageCache()
     }
-    
-    
+
+
     var inMemoryCache = NSCache<AnyObject, UIImage>()
-    
-    func clearImageCache()
-    {
+
+    func clearImageCache() {
         inMemoryCache = NSCache()
     }
-    
-    func getImage(_ imageURL: URL) -> UIImage?
-    {
+
+    func getImage(_ imageURL: URL) -> UIImage? {
         return inMemoryCache.object(forKey: imageURL.absoluteString as NSString)
     }
-    
-    func saveImage(_ imageURL: URL, image: UIImage)
-    {
+
+    func saveImage(_ imageURL: URL, image: UIImage) {
         inMemoryCache.setObject(image, forKey: imageURL.absoluteString as NSString)
     }
 }

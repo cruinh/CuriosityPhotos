@@ -9,50 +9,37 @@
 import Foundation
 import UIKit
 
-class CuriosityPhotoRepository
-{
-    class func getImage(fromURL imageURL: URL, completion:@escaping ((_ image: UIImage?, _ error: Error?)-> Void))
-    {
-        if let image = CuriosityPhotoCache.defaultInstance.getImage(imageURL)
-        {
+class CuriosityPhotoRepository {
+    class func getImage(fromURL imageURL: URL, completion:@escaping ((_ image: UIImage?, _ error: Error?) -> Void)) {
+        if let image = CuriosityPhotoCache.defaultInstance.getImage(imageURL) {
             completion(image, nil)
-        }
-        else
-        {
+        } else {
             _requestImage(fromURL: imageURL, completion: completion)
         }
     }
-    
-    fileprivate class func _requestImage(fromURL imageURL: URL, completion:@escaping ((_ image: UIImage?, _ error: Error?)-> Void))
-    {
+
+    fileprivate class func _requestImage(fromURL imageURL: URL, completion:@escaping ((_ image: UIImage?, _ error: Error?) -> Void)) {
         DispatchQueue.global(qos: .default).async { () -> Void in
-            var maybeImage : UIImage? = nil
-            var maybeError : Error? = nil
-            if let data = try? Data(contentsOf: imageURL)
-            {
-                if let image = UIImage(data: data)
-                {
+            var maybeImage: UIImage? = nil
+            var maybeError: Error? = nil
+            if let data = try? Data(contentsOf: imageURL) {
+                if let image = UIImage(data: data) {
                     maybeImage = image
                     CuriosityPhotoCache.defaultInstance.saveImage(imageURL, image: image)
-                }
-                else
-                {
+                } else {
                     maybeError = RepositoryError.badData
                 }
-            }
-            else
-            {
+            } else {
                 maybeError = RepositoryError.badURL
             }
-            
+
             DispatchQueue.main.async(execute: { () -> Void in
                 completion(maybeImage, maybeError)
             })
         }
     }
-    
-    enum RepositoryError: Error
-    {
+
+    enum RepositoryError: Error {
         case badURL
         case badData
     }

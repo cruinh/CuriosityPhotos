@@ -9,18 +9,14 @@
 import Foundation
 import UIKit
 
-class TabBarController : UITabBarController, UITabBarControllerDelegate
-{
-    override func awakeFromNib()
-    {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
+    override func awakeFromNib() {
         super.awakeFromNib()
         self.delegate = self
     }
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
-    {
-        if let viewController = viewController as? PhotoCollectionViewController
-        {
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let viewController = viewController as? PhotoCollectionViewController {
             viewController.refresh()
         }
     }

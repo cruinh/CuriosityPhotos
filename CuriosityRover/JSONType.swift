@@ -13,7 +13,7 @@ public enum JSONType {
     case string(string: String)
     case number(number: NSNumber)
     case invalid(jsonObject:Any?)
-    
+
     public func rawObject<T>() -> T? {
         switch self {
         case .array(let array):
@@ -28,15 +28,13 @@ public enum JSONType {
             return object as? T
         }
     }
-    
+
     public static func create(jsonObject: Any?) -> JSONType {
         if let array = jsonObject as? [AnyObject] {
             return JSONType.array(array: array)
-        }
-        else if let dictionary = jsonObject as? [String:AnyObject] {
+        } else if let dictionary = jsonObject as? [String:AnyObject] {
             return JSONType.dictionary(dictionary: dictionary)
-        }
-        else if let string = jsonObject as? String {
+        } else if let string = jsonObject as? String {
             return JSONType.string(string: string)
         }
         return .invalid(jsonObject: jsonObject!)
@@ -44,29 +42,29 @@ public enum JSONType {
 }
 
 extension JSONType {
-    
+
     public func jsonValue<T: JSONObjectConvertable>() -> [T]? {
-        
+
         switch self {
         case .array(let array):
-            
+
             var parsedItems = [T]()
             for item in array {
-                
+
                 let item = JSONType.create(jsonObject: item)
                 if let parsedItem = T(JSON: item) {
                     parsedItems.append(parsedItem)
                 }
-                
+
             }
             return parsedItems
-            
+
         default:
             return nil
         }
-        
+
     }
-    
+
     public func jsonValue(key: String) -> JSONType? {
         switch self {
         case .dictionary(let dictionary):
@@ -75,7 +73,7 @@ extension JSONType {
             return nil
         }
     }
-    
+
     public func jsonValue<T>(key: String) -> T? {
         switch self {
         case .dictionary(let dictionary):
@@ -84,7 +82,7 @@ extension JSONType {
             return nil
         }
     }
-    
+
     public func jsonValue<T>(index: Int) -> T? {
         switch self {
         case .array(let array):
@@ -96,7 +94,7 @@ extension JSONType {
         }
         return nil
     }
-    
+
     public func jsonValue() -> String? {
         switch self {
         case .string(let string):
@@ -105,7 +103,7 @@ extension JSONType {
             return nil
         }
     }
-    
+
     public func jsonValue() -> NSNumber? {
         switch self {
         case .number(let number):
