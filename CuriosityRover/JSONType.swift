@@ -12,7 +12,7 @@ public enum JSONType {
     case dictionary(dictionary:[String:AnyObject])
     case string(string: String)
     case number(number: NSNumber)
-    case invalid(jsonObject:AnyObject?)
+    case invalid(jsonObject:Any?)
     
     public func rawObject<T>() -> T? {
         switch self {
@@ -29,7 +29,7 @@ public enum JSONType {
         }
     }
     
-    public static func create(jsonObject: AnyObject?) -> JSONType {
+    public static func create(jsonObject: Any?) -> JSONType {
         if let array = jsonObject as? [AnyObject] {
             return JSONType.array(array: array)
         }
@@ -70,7 +70,7 @@ extension JSONType {
     public func jsonValue(key: String) -> JSONType? {
         switch self {
         case .dictionary(let dictionary):
-            return JSONType.create(jsonObject: dictionary.jsonValue(key))
+            return JSONType.create(jsonObject: dictionary.jsonValue(key) as AnyObject?)
         default:
             return nil
         }

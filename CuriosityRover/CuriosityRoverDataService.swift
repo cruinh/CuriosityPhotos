@@ -36,10 +36,10 @@ class CuriosityRoverDataService
                 else
                 {
                     if let data = data,
-                        let JSONObject = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String:AnyObject]
+                        let JSONObject = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                     {
                         print("[--GOOD RESPONSE--]:")
-                        let JSON = JSONType.create(jsonObject: JSONObject as AnyObject)
+                        let JSON = JSONType.create(jsonObject: JSONObject)
                         completion(JSON,nil)
                     }
                     else
