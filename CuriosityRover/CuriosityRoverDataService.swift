@@ -10,7 +10,7 @@ import Foundation
 
 class CuriosityRoverDataService
 {
-    func getData(_ completion: @escaping ((_ JSON: [String:AnyObject]?, _ error:ServiceError?) -> Void))
+    func getData(_ completion: @escaping ((_ JSON: JSONType?, _ error:ServiceError?) -> Void))
     {
         let options = Options()
         
@@ -36,9 +36,10 @@ class CuriosityRoverDataService
                 else
                 {
                     if let data = data,
-                        let JSON = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String:AnyObject]
+                        let JSONObject = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String:AnyObject]
                     {
                         print("[--GOOD RESPONSE--]:")
+                        let JSON = JSONType.create(jsonObject: JSONObject as AnyObject)
                         completion(JSON,nil)
                     }
                     else

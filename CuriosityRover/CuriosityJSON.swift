@@ -8,14 +8,9 @@
 
 import Foundation
 
-protocol DataProtocol
+struct CuriosityRoverData: JSONObjectConvertable, CustomStringConvertible
 {
-    init?(JSON: [String:AnyObject]?)
-}
-
-struct CuriosityRoverData: DataProtocol, CustomStringConvertible
-{
-    class PhotoInfo: DataProtocol, CustomStringConvertible
+    class PhotoInfo: JSONObjectConvertable, CustomStringConvertible
     {
         var id: Int64?
         var sol: Int64?
@@ -24,16 +19,17 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         var earth_date: Date?
         var rover: RoverInfo?
         
-        required init?(JSON: [String:AnyObject]?)
+        required init?(JSON: JSONType?)
         {
             guard let JSON = JSON else { return nil }
+            guard case .dictionary(let dictionary) = JSON else { return nil }
             
-            id = JSON.jsonValue("id")
-            sol = JSON.jsonValue("sol")
-            camera = JSON.jsonValue("camera")
-            img_src = JSON.jsonValue("img_src")
-            earth_date = JSON.jsonValue("earth_date")
-            rover = JSON.jsonValue("rover")
+            id = dictionary.jsonValue("id")
+            sol = dictionary.jsonValue("sol")
+            camera = dictionary.jsonValue("camera")
+            img_src = dictionary.jsonValue("img_src")
+            earth_date = dictionary.jsonValue("earth_date")
+            rover = dictionary.jsonValue("rover")
         }
         
         var description: String
@@ -42,21 +38,22 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         }
     }
     
-    struct CameraInfo: DataProtocol, CustomStringConvertible
+    struct CameraInfo: JSONObjectConvertable, CustomStringConvertible
     {
         var id: Int64?
         var name: String?
         var rover_id: Int64?
         var full_name: String?
         
-        init?(JSON: [String:AnyObject]?)
+        init?(JSON: JSONType?)
         {
             guard let JSON = JSON else { return nil }
+            guard case .dictionary(let dictionary) = JSON else { return nil }
             
-            id = JSON.jsonValue("id")
-            name = JSON.jsonValue("name")
-            rover_id = JSON.jsonValue("rover_id")
-            full_name = JSON.jsonValue("full_name")
+            id = dictionary.jsonValue("id")
+            name = dictionary.jsonValue("name")
+            rover_id = dictionary.jsonValue("rover_id")
+            full_name = dictionary.jsonValue("full_name")
         }
         
         var description: String
@@ -65,17 +62,18 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         }
     }
     
-    struct CameraSummaryInfo: DataProtocol, CustomStringConvertible
+    struct CameraSummaryInfo: JSONObjectConvertable, CustomStringConvertible
     {
         var name: String?
         var full_name: String?
         
-        init?(JSON: [String:AnyObject]?)
+        init?(JSON: JSONType?)
         {
             guard let JSON = JSON else { return nil }
+            guard case .dictionary(let dictionary) = JSON else { return nil }
             
-            name = JSON.jsonValue("name")
-            full_name = JSON.jsonValue("full_name")
+            name = dictionary.jsonValue("name")
+            full_name = dictionary.jsonValue("full_name")
         }
         
         var description: String
@@ -84,7 +82,7 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         }
     }
     
-    struct RoverInfo: DataProtocol, CustomStringConvertible
+    struct RoverInfo: JSONObjectConvertable, CustomStringConvertible
     {
         var id: Int64?
         var name: String?
@@ -94,17 +92,18 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         var total_photos: Int64?
         var cameras = [CameraSummaryInfo]()
         
-        init?(JSON: [String:AnyObject]?)
+        init?(JSON: JSONType?)
         {
             guard let JSON = JSON else { return nil }
+            guard case .dictionary(let dictionary) = JSON else { return nil }
             
-            self.id = JSON.jsonValue("id")
-            name = JSON.jsonValue("name")
-            landing_date = JSON.jsonValue("landing_date")
-            max_sol = JSON.jsonValue("max_sol")
-            max_date = JSON.jsonValue("max_date")
-            total_photos = JSON.jsonValue("total_photos", defaultValue: 1)
-            cameras = JSON.jsonValue("cameras")
+            self.id = dictionary.jsonValue("id")
+            name = dictionary.jsonValue("name")
+            landing_date = dictionary.jsonValue("landing_date")
+            max_sol = dictionary.jsonValue("max_sol")
+            max_date = dictionary.jsonValue("max_date")
+            total_photos = dictionary.jsonValue("total_photos", defaultValue: 1)
+            cameras = dictionary.jsonValue("cameras")
         }
         
         var description: String
@@ -115,11 +114,12 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
     
     var photos = [PhotoInfo]()
     
-    init?(JSON: [String:AnyObject]?)
+    init?(JSON: JSONType?)
     {
         guard let JSON = JSON else { return nil }
+        guard case .dictionary(let dictionary) = JSON else { return nil }
         
-        photos = JSON.jsonValue("photos")
+        photos = dictionary.jsonValue("photos")
     }
     
     var description: String

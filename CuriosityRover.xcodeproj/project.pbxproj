@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8410B36B1D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B3671D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift */; };
+		8410B36C1D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B3681D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift */; };
+		8410B36D1D91B3D7008DB229 /* JSONDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B3691D91B3D7008DB229 /* JSONDataProtocol.swift */; };
+		8410B36E1D91B3D7008DB229 /* JSONType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410B36A1D91B3D7008DB229 /* JSONType.swift */; };
 		847F58931C89F93000585902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58921C89F93000585902 /* AppDelegate.swift */; };
 		847F58951C89F93000585902 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58941C89F93000585902 /* OptionsViewController.swift */; };
 		847F58971C89F93000585902 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58961C89F93000585902 /* PhotoCollectionViewController.swift */; };
@@ -14,7 +18,6 @@
 		847F589C1C89F93000585902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847F589B1C89F93000585902 /* Assets.xcassets */; };
 		847F589F1C89F93000585902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F589D1C89F93000585902 /* LaunchScreen.storyboard */; };
 		847F58A71C89FA1B00585902 /* CuriosityPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58A61C89FA1B00585902 /* CuriosityPhotoCell.swift */; };
-		847F58A91C89FEA700585902 /* Dictionary+JSONValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58A81C89FEA700585902 /* Dictionary+JSONValues.swift */; };
 		847F58AD1C8A0B7D00585902 /* CuriosityJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58AC1C8A0B7D00585902 /* CuriosityJSON.swift */; };
 		847F58AF1C8A0B9900585902 /* CuriosityRoverDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F58AE1C8A0B9900585902 /* CuriosityRoverDataService.swift */; };
 		84E580F31C909B970067C624 /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84E580F21C909B970067C624 /* apikey.txt */; };
@@ -22,12 +25,15 @@
 		84E581001C90D3780067C624 /* PhotoInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E580FF1C90D3780067C624 /* PhotoInfoController.swift */; };
 		AA680D151C98CD8A00F3976E /* CuriosityPhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA680D141C98CD8A00F3976E /* CuriosityPhotoCache.swift */; };
 		AA6DFB841C9701E20097CB1A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AA6DFB831C9701E20097CB1A /* LICENSE */; };
-		AA6DFB861C97412F0097CB1A /* Dictionary+JSONValues+DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB851C97412F0097CB1A /* Dictionary+JSONValues+DataProtocol.swift */; };
 		AA6DFB881C987F740097CB1A /* CuriosityPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6DFB871C987F740097CB1A /* CuriosityPhotoRepository.swift */; };
 		AA8ABD261C98D33900D5F04A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABD251C98D33900D5F04A /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8410B3671D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+BasicJSONParsing.swift"; sourceTree = "<group>"; };
+		8410B3681D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSONTypeParsing.swift"; sourceTree = "<group>"; };
+		8410B3691D91B3D7008DB229 /* JSONDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDataProtocol.swift; sourceTree = "<group>"; };
+		8410B36A1D91B3D7008DB229 /* JSONType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONType.swift; sourceTree = "<group>"; };
 		847F588F1C89F93000585902 /* CuriosityRover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CuriosityRover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F58921C89F93000585902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847F58941C89F93000585902 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
@@ -37,7 +43,6 @@
 		847F589E1C89F93000585902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		847F58A01C89F93000585902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847F58A61C89FA1B00585902 /* CuriosityPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuriosityPhotoCell.swift; sourceTree = "<group>"; };
-		847F58A81C89FEA700585902 /* Dictionary+JSONValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSONValues.swift"; sourceTree = "<group>"; };
 		847F58AC1C8A0B7D00585902 /* CuriosityJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuriosityJSON.swift; sourceTree = "<group>"; };
 		847F58AE1C8A0B9900585902 /* CuriosityRoverDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuriosityRoverDataService.swift; sourceTree = "<group>"; };
 		84E580F21C909B970067C624 /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
@@ -48,7 +53,6 @@
 		AA680D141C98CD8A00F3976E /* CuriosityPhotoCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuriosityPhotoCache.swift; sourceTree = "<group>"; };
 		AA6DFB811C9701DD0097CB1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA6DFB831C9701E20097CB1A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		AA6DFB851C97412F0097CB1A /* Dictionary+JSONValues+DataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSONValues+DataProtocol.swift"; sourceTree = "<group>"; };
 		AA6DFB871C987F740097CB1A /* CuriosityPhotoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuriosityPhotoRepository.swift; sourceTree = "<group>"; };
 		AA8ABD251C98D33900D5F04A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AA8ABD271C98D8F900D5F04A /* Screenshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Screenshots; sourceTree = "<group>"; };
@@ -95,8 +99,10 @@
 				847F58A61C89FA1B00585902 /* CuriosityPhotoCell.swift */,
 				AA6DFB871C987F740097CB1A /* CuriosityPhotoRepository.swift */,
 				847F58AE1C8A0B9900585902 /* CuriosityRoverDataService.swift */,
-				847F58A81C89FEA700585902 /* Dictionary+JSONValues.swift */,
-				AA6DFB851C97412F0097CB1A /* Dictionary+JSONValues+DataProtocol.swift */,
+				8410B3671D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift */,
+				8410B3681D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift */,
+				8410B3691D91B3D7008DB229 /* JSONDataProtocol.swift */,
+				8410B36A1D91B3D7008DB229 /* JSONType.swift */,
 				847F58941C89F93000585902 /* OptionsViewController.swift */,
 				847F58961C89F93000585902 /* PhotoCollectionViewController.swift */,
 				84E580FF1C90D3780067C624 /* PhotoInfoController.swift */,
@@ -194,18 +200,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				847F58A71C89FA1B00585902 /* CuriosityPhotoCell.swift in Sources */,
-				AA6DFB861C97412F0097CB1A /* Dictionary+JSONValues+DataProtocol.swift in Sources */,
 				847F58AD1C8A0B7D00585902 /* CuriosityJSON.swift in Sources */,
 				AA8ABD261C98D33900D5F04A /* TabBarController.swift in Sources */,
-				847F58A91C89FEA700585902 /* Dictionary+JSONValues.swift in Sources */,
 				847F58971C89F93000585902 /* PhotoCollectionViewController.swift in Sources */,
 				AA680D151C98CD8A00F3976E /* CuriosityPhotoCache.swift in Sources */,
 				AA6DFB881C987F740097CB1A /* CuriosityPhotoRepository.swift in Sources */,
 				847F58931C89F93000585902 /* AppDelegate.swift in Sources */,
+				8410B36D1D91B3D7008DB229 /* JSONDataProtocol.swift in Sources */,
+				8410B36C1D91B3D7008DB229 /* Dictionary+JSONTypeParsing.swift in Sources */,
 				84E580FE1C90D3660067C624 /* PhotoViewController.swift in Sources */,
+				8410B36E1D91B3D7008DB229 /* JSONType.swift in Sources */,
 				84E581001C90D3780067C624 /* PhotoInfoController.swift in Sources */,
 				847F58951C89F93000585902 /* OptionsViewController.swift in Sources */,
 				847F58AF1C8A0B9900585902 /* CuriosityRoverDataService.swift in Sources */,
+				8410B36B1D91B3D7008DB229 /* Dictionary+BasicJSONParsing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

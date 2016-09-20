@@ -1,9 +1,9 @@
 //
-//  Dictionary+JSONValues.swift
-//  uShip
+//  Dictionary+BasicJSONParsing.swift
+//  WaniKaniSDK
 //
-//  Created by Matt Hayes on 11/18/15.
-//  Copyright © 2015 uShip. All rights reserved.
+//  Created by Matthew Hayes on 9/18/16.
+//  Copyright © 2016 Matthew Hayes. All rights reserved.
 //
 
 import Foundation
@@ -187,6 +187,16 @@ public extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObj
     
     /**
      looks for a value with the given key
+     if the value exists as a String, returns the value
+     returns an empty string otherwise
+     */
+    public func jsonValue(_ key: String) -> String?
+    {
+        return self[key as! Key] as? String
+    }
+    
+    /**
+     looks for a value with the given key
      returns true if the value is an NSNumber that evaluates to true
      returns false if the value does not exist, is the wrong type, or evaluates false
      */
@@ -195,65 +205,4 @@ public extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObj
         return self[key as! Key] as? Bool ?? defaultValue
     }
     
-}
-
-//MARK: Foundation value types
-public extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject
-{
-    /**
-     looks for a value with the given key
-     if the value exists as a String, uses NSDateFormatter and the format "yyyy-MM-dd" to create an NSDate.
-     returns nil if the format does not apply to the given string.
-     */
-    public func jsonValue(_ key: String) -> Date?
-    {
-        if let dateString = self[key as! Key] as? String
-        {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return formatter.date(from: dateString)
-        }
-        else
-        {
-            return nil
-        }
-    }
-    
-    /**
-     looks for a value with the given key
-     if the value exists as a String, it returns the result of NSURL(string:)
-     returns nil otherwise
-     */
-    public func jsonValue(_ key: String) -> URL?
-    {
-        if let urlString = self[key as! Key] as? String
-        {
-            return URL(string: urlString)
-        }
-        else
-        {
-            return nil
-        }
-    }
-    
-    /**
-     looks for a value with the given key
-     if the value exists as a String, it returns the result of NSURL(string:)
-     returns nil otherwise
-     */
-    public func jsonValue(_ key: String) -> [URL]
-    {
-        var finalArray = [URL]()
-        if let urlStringArray = self[key as! Key] as? [String]
-        {
-            for urlString in urlStringArray
-            {
-                if let url = URL(string: urlString)
-                {
-                    finalArray.append(url)
-                }
-            }
-        }
-        return finalArray
-    }
 }
