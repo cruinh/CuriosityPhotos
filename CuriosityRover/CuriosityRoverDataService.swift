@@ -10,49 +10,49 @@ import Foundation
 
 class CuriosityRoverDataService
 {
-    func getData(completion: ((JSON: [String:AnyObject]?, error:Error?) -> Void))
+    func getData(_ completion: @escaping ((_ JSON: [String:AnyObject]?, _ error:ServiceError?) -> Void))
     {
         let options = Options()
         
-        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfig)
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig)
         
         let apiKey = CuriosityRoverDataService.apiKey()
         let URLString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=\(options.dateString)&page=\(options.page)&api_key=\(apiKey)"
         
         print("requesting data from: \(URLString)")
         
-        if let URL = NSURL(string: URLString)
+        if let URL = URL(string: URLString)
         {
-            let task = session.dataTaskWithURL(URL) { (data, URLResponse, error) -> Void in
+            let task = session.dataTask(with: URL, completionHandler: { (data, URLResponse, error) -> Void in
                 
                 print("response: \n\tdata:\(data)\n\tURLResponse:\(URLResponse)\n\terror:\(error)")
                 
                 if let error = error
                 {
                     print("[--ERROR--]")
-                    completion(JSON: nil,error: .ErrorInResponse(error: error))
+                    completion(nil,.errorInResponse(error: error as NSError))
                 }
                 else
                 {
                     if let data = data,
-                        JSON = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String:AnyObject]
+                        let JSON = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [String:AnyObject]
                     {
                         print("[--GOOD RESPONSE--]:")
-                        completion(JSON: JSON,error: nil)
+                        completion(JSON,nil)
                     }
                     else
                     {
                         print("[--BAD RESPONSE--]: NON-JSON")
-                        completion(JSON: nil,error: .NonJSONResponseData(data:data))
+                        completion(nil,.nonJSONResponseData(data:data))
                     }
                 }
-            }
+            }) 
             task.resume()
         }
         else
         {
-            completion(JSON: nil,error: .BadURL(string: URLString))
+            completion(nil,.badURL(string: URLString))
         }
     }
     
@@ -61,11 +61,11 @@ class CuriosityRoverDataService
     {
         if _apiKey == nil
         {
-            if let apiKeyFilePath = NSBundle.mainBundle().pathForResource("apikey", ofType: "txt") where NSFileManager.defaultManager().fileExistsAtPath(apiKeyFilePath)
+            if let apiKeyFilePath = Bundle.main.path(forResource: "apikey", ofType: "txt") , FileManager.default.fileExists(atPath: apiKeyFilePath)
             {
                 do
                 {
-                    _apiKey = try NSString(contentsOfFile: apiKeyFilePath, encoding: NSUTF8StringEncoding) as String
+                    _apiKey = try NSString(contentsOfFile: apiKeyFilePath, encoding: String.Encoding.utf8.rawValue) as String
                 }
                 catch
                 {
@@ -85,10 +85,10 @@ class CuriosityRoverDataService
     
     struct Options
     {
-        var date: NSDate
+        var date: Date
         var page: Int
         
-        init(date: NSDate, page: Int)
+        init(date: Date, page: Int)
         {
             self.date = date
             self.page = page
@@ -96,10 +96,10 @@ class CuriosityRoverDataService
         
         init()
         {
-            page = NSUserDefaults.standardUserDefaults().integerForKey("CURIOSITY_PAGE")
+            page = UserDefaults.standard.integer(forKey: "CURIOSITY_PAGE")
             if page < 1 { page = 1 }
             
-            if let date = NSUserDefaults.standardUserDefaults().objectForKey("CURIOSITY_DATE") as? NSDate
+            if let date = UserDefaults.standard.object(forKey: "CURIOSITY_DATE") as? Date
             {
                 self.date = date
             }
@@ -111,43 +111,43 @@ class CuriosityRoverDataService
         
         func save()
         {
-            NSUserDefaults.standardUserDefaults().setObject(date, forKey: "CURIOSITY_DATE")
-            NSUserDefaults.standardUserDefaults().setInteger(page, forKey: "CURIOSITY_PAGE")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(date, forKey: "CURIOSITY_DATE")
+            UserDefaults.standard.set(page, forKey: "CURIOSITY_PAGE")
+            UserDefaults.standard.synchronize()
         }
         
         var dateString: String
             {
             get
             {
-                let dateFormatter = NSDateFormatter()
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
-                return dateFormatter.stringFromDate(date)
+                return dateFormatter.string(from: date)
             }
         }
     }
     
-    enum Error : ErrorType
+    enum ServiceError : Error
     {
-        case BadURL(string: String)
-        case ErrorInResponse(error: NSError)
-        case NonJSONResponseData(data: NSData?)
+        case badURL(string: String)
+        case errorInResponse(error: NSError)
+        case nonJSONResponseData(data: Data?)
     }
 }
 
-private func yesterDay() -> NSDate
+private func yesterDay() -> Date
 {
-    let today: NSDate = NSDate()
+    let today: Date = Date()
     
     let daysToAdd:Int = -1
     
     // Set up date components
-    let dateComponents: NSDateComponents = NSDateComponents()
+    var dateComponents: DateComponents = DateComponents()
     dateComponents.day = daysToAdd
     
     // Create a calendar
-    let gregorianCalendar: NSCalendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)!
-    let yesterDayDate: NSDate = gregorianCalendar.dateByAddingComponents(dateComponents, toDate: today, options:NSCalendarOptions(rawValue: 0))!
+    let gregorianCalendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+    let yesterDayDate: Date = (gregorianCalendar as NSCalendar).date(byAdding: dateComponents, to: today, options:NSCalendar.Options(rawValue: 0))!
     
     return yesterDayDate
 }

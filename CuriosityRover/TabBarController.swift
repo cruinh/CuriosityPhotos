@@ -17,7 +17,7 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate
         self.delegate = self
     }
     
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController)
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
     {
         if let viewController = viewController as? PhotoCollectionViewController
         {

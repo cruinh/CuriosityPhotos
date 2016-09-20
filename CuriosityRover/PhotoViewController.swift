@@ -39,8 +39,8 @@ class PhotoViewController : UIViewController, UIScrollViewDelegate
         if let imageURL = photoInfo?.img_src
         {
             activityIndicator?.startAnimating()
-            CuriosityPhotoRepository.getImage(imageURL, completion: { [weak self](image, error) -> Void in
-                guard self != nil else { print("self was nil: \(__FILE__):\(__LINE__)"); return }
+            CuriosityPhotoRepository.getImage(fromURL: imageURL, completion: { [weak self](image, error) -> Void in
+                guard self != nil else { print("self was nil: \(#file):\(#line)"); return }
                 
                 if let image = image
                 {
@@ -65,28 +65,28 @@ class PhotoViewController : UIViewController, UIScrollViewDelegate
         var titleString = photoInfo?.camera?.name ?? ""
         if let earthDate = photoInfo?.earth_date
         {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .ShortStyle
-            titleString = titleString + " " + dateFormatter.stringFromDate(earthDate)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            titleString = titleString + " " + dateFormatter.string(from: earthDate as Date)
         }
         title = titleString
     }
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?
+    func viewForZooming(in scrollView: UIScrollView) -> UIView?
     {
         return self.imageView
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destinationViewController = segue.destinationViewController as? PhotoInfoController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? PhotoInfoController
         {
             destinationViewController.photoInfo = self.photoInfo
         }
     }
 
-    @IBAction func dismiss(sender: UIButton?)
+    @IBAction func dismiss(_ sender: UIButton?)
     {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
 }

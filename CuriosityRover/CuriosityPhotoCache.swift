@@ -11,48 +11,38 @@ import UIKit
 
 class CuriosityPhotoCache
 {
-    private static var s_instance: CuriosityPhotoCache!
-    private static var s_instance_token : dispatch_once_t = 0
-    
-    class func defaultInstance() -> CuriosityPhotoCache
-    {
-        dispatch_once(&CuriosityPhotoCache.s_instance_token) { () -> Void in
-            CuriosityPhotoCache.s_instance = CuriosityPhotoCache()
-            
-        }
-        return CuriosityPhotoCache.s_instance
-    }
+    static let defaultInstance = CuriosityPhotoCache()
     
     init()
     {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("receivedMemoryWarning"), name: UIApplicationDidReceiveMemoryWarningNotification, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedMemoryWarning), name: NSNotification.Name.UIApplicationDidReceiveMemoryWarning, object: self)
     }
     
     deinit
     {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func receivedMemoryWarning()
+    @objc func receivedMemoryWarning()
     {
         clearImageCache()
     }
     
     
-    var inMemoryCache = NSCache()
+    var inMemoryCache = NSCache<AnyObject, UIImage>()
     
     func clearImageCache()
     {
         inMemoryCache = NSCache()
     }
     
-    func getImage(imageURL: NSURL) -> UIImage?
+    func getImage(_ imageURL: URL) -> UIImage?
     {
-        return inMemoryCache.objectForKey(imageURL.absoluteString) as? UIImage
+        return inMemoryCache.object(forKey: imageURL.absoluteString as NSString)
     }
     
-    func saveImage(imageURL: NSURL, image: UIImage)
+    func saveImage(_ imageURL: URL, image: UIImage)
     {
-        inMemoryCache.setObject(image, forKey: imageURL.absoluteString)
+        inMemoryCache.setObject(image, forKey: imageURL.absoluteString as NSString)
     }
 }

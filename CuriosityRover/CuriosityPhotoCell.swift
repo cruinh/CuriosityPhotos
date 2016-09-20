@@ -15,16 +15,16 @@ class CuriosityPhotoCell : UICollectionViewCell
     @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var spinner : UIActivityIndicatorView!
     
-    func populateWithImage(imageURL: NSURL)
+    func populate(withImage imageURL: URL)
     {
         spinner.startAnimating()
-        backgroundColor = UIColor.darkGrayColor()
+        backgroundColor = UIColor.darkGray
         imageView.image = nil
         
-        CuriosityPhotoRepository.getImage(imageURL, completion: { [weak self] (image, error) -> Void in
+        CuriosityPhotoRepository.getImage(fromURL: imageURL, completion: { [weak self] (image, error) -> Void in
             
-            guard self != nil else { print("self was nil: \(__FILE__):\(__LINE__)"); return }
-            guard error == nil else { print("[--ERROR--]: \(__FILE__):\(__LINE__)\n\(error)"); return }
+            guard self != nil else { print("self was nil: \(#file):\(#line)"); return }
+            guard error == nil else { print("[--ERROR--]: \(#file):\(#line)\n\(error)"); return }
             
             self!.imageView.image = image
             self!.spinner.stopAnimating()

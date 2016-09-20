@@ -11,49 +11,49 @@ import UIKit
 
 class CuriosityPhotoRepository
 {
-    class func getImage(imageURL: NSURL, completion:((image: UIImage?, error: Error?)-> Void))
+    class func getImage(fromURL imageURL: URL, completion:@escaping ((_ image: UIImage?, _ error: Error?)-> Void))
     {
-        if let image = CuriosityPhotoCache.defaultInstance().getImage(imageURL)
+        if let image = CuriosityPhotoCache.defaultInstance.getImage(imageURL)
         {
-            completion(image: image, error: nil)
+            completion(image, nil)
         }
         else
         {
-            _requestImage(imageURL, completion: completion)
+            _requestImage(fromURL: imageURL, completion: completion)
         }
     }
     
-    private class func _requestImage(imageURL: NSURL, completion:((image: UIImage?, error: Error?)-> Void))
+    fileprivate class func _requestImage(fromURL imageURL: URL, completion:@escaping ((_ image: UIImage?, _ error: Error?)-> Void))
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
+        DispatchQueue.global(qos: .default).async { () -> Void in
             var maybeImage : UIImage? = nil
             var maybeError : Error? = nil
-            if let data = NSData(contentsOfURL: imageURL)
+            if let data = try? Data(contentsOf: imageURL)
             {
                 if let image = UIImage(data: data)
                 {
                     maybeImage = image
-                    CuriosityPhotoCache.defaultInstance().saveImage(imageURL, image: image)
+                    CuriosityPhotoCache.defaultInstance.saveImage(imageURL, image: image)
                 }
                 else
                 {
-                    maybeError = Error.BadData
+                    maybeError = RepositoryError.badData
                 }
             }
             else
             {
-                maybeError = Error.BadURL
+                maybeError = RepositoryError.badURL
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completion(image: maybeImage, error: maybeError)
+            DispatchQueue.main.async(execute: { () -> Void in
+                completion(maybeImage, maybeError)
             })
         }
     }
     
-    enum Error: ErrorType
+    enum RepositoryError: Error
     {
-        case BadURL
-        case BadData
+        case badURL
+        case badData
     }
 }

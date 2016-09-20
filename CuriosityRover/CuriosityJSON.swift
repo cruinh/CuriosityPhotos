@@ -20,8 +20,8 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
         var id: Int64?
         var sol: Int64?
         var camera : CameraInfo?
-        var img_src: NSURL?
-        var earth_date: NSDate?
+        var img_src: URL?
+        var earth_date: Date?
         var rover: RoverInfo?
         
         required init?(JSON: [String:AnyObject]?)
@@ -88,9 +88,9 @@ struct CuriosityRoverData: DataProtocol, CustomStringConvertible
     {
         var id: Int64?
         var name: String?
-        var landing_date: NSDate?
+        var landing_date: Date?
         var max_sol: Int64?
-        var max_date: NSDate?
+        var max_date: Date?
         var total_photos: Int64?
         var cameras = [CameraSummaryInfo]()
         

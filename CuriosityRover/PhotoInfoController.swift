@@ -21,7 +21,7 @@ class PhotoInfoController : UIViewController
         if let photoInfo = photoInfo
         {
             textView?.text = "\(photoInfo)"
-            textView?.contentOffset = CGPointZero
+            textView?.contentOffset = CGPoint.zero
         }
         else
         {
@@ -36,6 +36,6 @@ class PhotoInfoController : UIViewController
     
     @IBAction func dismiss()
     {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

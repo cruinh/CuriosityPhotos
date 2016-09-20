@@ -25,29 +25,29 @@ class OptionsViewController: UIViewController, UITextFieldDelegate
         
         populateValues()
         
-        dismissPickerButton.backgroundColor = UIColor.blackColor()
+        dismissPickerButton.backgroundColor = UIColor.black
         
         saveSelectedValues()
         
         hideDatePicker(false)
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
     }
     
     
-    private func populateValues()
+    fileprivate func populateValues()
     {
         let options = CuriosityRoverDataService.Options()
-        datePicker.date = options.date
+        datePicker.date = options.date as Date
         dateTextField.text = options.dateString
         pageTextField.text = "\(options.page)"
     }
     
-    private func saveSelectedValues()
+    fileprivate func saveSelectedValues()
     {
         let date = datePicker.date
         let page = Int(pageTextField.text ?? "1") ?? 1
@@ -56,32 +56,32 @@ class OptionsViewController: UIViewController, UITextFieldDelegate
         options.save()
     }
     
-    private func showDatePicker()
+    fileprivate func showDatePicker()
     {
         view.layoutIfNeeded()
         
-        dismissPickerButton.hidden = false
+        dismissPickerButton.isHidden = false
         datePickerBottomConstraint.constant = 0
         
-        UIView.animateWithDuration(0.2) { [weak self] () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { [weak self] () -> Void in
             self?.dismissPickerButton.alpha = 0.5
             self?.view.layoutIfNeeded()
-        }
+        }) 
     }
     
-    private func hideDatePicker(animated: Bool = true)
+    fileprivate func hideDatePicker(_ animated: Bool = true)
     {
         view.layoutIfNeeded()
         
         datePickerBottomConstraint.constant = (0 - datePicker.bounds.size.height)
-        dismissPickerButton.hidden = true
+        dismissPickerButton.isHidden = true
         
         if animated
         {
-            UIView.animateWithDuration(0.2) { [weak self] () -> Void in
+            UIView.animate(withDuration: 0.2, animations: { [weak self] () -> Void in
                 self?.dismissPickerButton.alpha = 0
                 self?.view.layoutIfNeeded()
-            }
+            }) 
         }
         else
         {
@@ -90,12 +90,12 @@ class OptionsViewController: UIViewController, UITextFieldDelegate
         }
     }
     
-    @IBAction func didTapDate(sender: AnyObject)
+    @IBAction func didTapDate(_ sender: AnyObject)
     {
         showDatePicker()
     }
     
-    @IBAction func didTapDismissPickerButton(sender: AnyObject)
+    @IBAction func didTapDismissPickerButton(_ sender: AnyObject)
     {
         pageTextField.resignFirstResponder()
         hideDatePicker()
@@ -103,30 +103,30 @@ class OptionsViewController: UIViewController, UITextFieldDelegate
         populateValues()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    override var preferredStatusBarStyle : UIStatusBarStyle
     {
-        return .Default;
+        return .default;
     }
     
-    func textFieldDidBeginEditing(textField: UITextField)
+    func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        dismissPickerButton.hidden = false
+        dismissPickerButton.isHidden = false
         
-        UIView.animateWithDuration(0.2) { [weak self] () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { [weak self] () -> Void in
             self?.dismissPickerButton.alpha = 0.5
-        }
+        }) 
     }
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textFieldDidEndEditing(_ textField: UITextField)
     {
         saveSelectedValues()
         populateValues()
         
-        dismissPickerButton.hidden = true
+        dismissPickerButton.isHidden = true
         
-        UIView.animateWithDuration(0.2) { [weak self] () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { [weak self] () -> Void in
             self?.dismissPickerButton.alpha = 0
-        }
+        }) 
     }
 }
 

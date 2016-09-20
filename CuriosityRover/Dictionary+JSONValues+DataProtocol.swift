@@ -8,16 +8,16 @@
 
 import Foundation
 
-internal extension Dictionary where Key: StringLiteralConvertible, Value: AnyObject
+internal extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject
 {
-    func jsonValue<T: DataProtocol>(key: String) -> T?
+    func jsonValue<T: DataProtocol>(_ key: String) -> T?
     {
         guard let jsonValue = self[key as! Key] as? [String:AnyObject] else { return nil }
         
         return T(JSON: jsonValue)
     }
     
-    func jsonValue<T: DataProtocol>(key: String) -> [T]
+    func jsonValue<T: DataProtocol>(_ key: String) -> [T]
     {
         var finalArray = [T]()
         if let jsonArray = self[key as! Key] as? [[String:AnyObject]]
@@ -33,7 +33,7 @@ internal extension Dictionary where Key: StringLiteralConvertible, Value: AnyObj
         return finalArray
     }
     
-    func jsonValue<T: DataProtocol>(key: String) -> [String:T]
+    func jsonValue<T: DataProtocol>(_ key: String) -> [String:T]
     {
         var finalDictionary = [String:T]()
         if let jsonDictionary = self[key as! Key] as? [String:[String:AnyObject]]
