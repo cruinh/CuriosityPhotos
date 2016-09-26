@@ -62,6 +62,7 @@ class CuriosityRoverDataService {
                 print("[--ERROR--]: Please create the file apikey.txt and ensure that it gets included in the build target for the app.  To request an API key from NASA visit: https://api.nasa.gov.")
                 abort()
             }
+            _apiKey = _apiKey?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
         return _apiKey!
     }
